@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'variables';
+@import '../node_modules/font-awesome/scss/font-awesome';
+
+// some basic resets
+$lt-gray: #ddd;
+$background-dark: #7d745e;
+$background-light: #d6c8a3;
+$background-pale: #d6c8a3;
+$primary-color-dark:   #7d745e;
+$primary-color:        #d6c8a3;
+$primary-color-light:  #d6c8a3;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #FFC107;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+
+}/* You can add global styles to this file, and also import other style files */
+
+.container {
+    margin: 20px;
+    display:flex;
+}
+
+.background-primary {
+    background-color: $background-dark!important;
+  }
+.background-accent {
+    background-color: $accent-color!important;
+  }
+.text-floral-white {
+    color: floralwhite!important;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.grey-back {
+  background: #d6c8a3;
+}
+
+.app-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.z-depth-3 {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.z-depth-5 {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}

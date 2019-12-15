@@ -1,0 +1,107 @@
+<div class="container jumbotron"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.xs="start center"
+    fxLayoutAlign.sm="start center"
+    fxLayoutAlign.gt-sm="center center"
+    fxLayoutGap="10px">
+
+  <div fxFlex fxFlex.gt-sm="50%">
+    <h1>Ristorante Con Fusion</h1>
+    <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations
+      will tickle your culinary senses!</p>
+  </div>
+  <div fxFlex fxFlex.gt-sm="20%">
+    <img src="/assets/images/logo.png" alt="Logo">
+  </div>
+  <div fxFlex></div>
+</div>
+
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+
+  <div fxFlex>
+    <div>
+      <h3>Эпохи</h3>
+        <span class="flex-spacer"></span>
+        <a mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile *ngFor="let people of peoplz" (click) = "onSelect(people)">
+        <img height="200px" src={{people.image}} alt={{people.name_ru}}>
+        <mat-grid-tile-footer>
+          <h1>{{people.name_ru | uppercase}}</h1>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+
+ <app-ppl-detailed [people] = "featuredMan"></app-ppl-detailed>
+
+ <div fxFlex>
+   <div fxLayout="column" fxLayout.gt-sm="row">
+     <div fxFlex="50" fxFlexOffset="20px">
+       <div>
+         <a mat-raised-button href="tel:+85212345678"><i class="fa fa-phone"></i> Call</a>
+         <a mat-raised-button><i class="fa fa-skype"></i> Skype</a>
+         <a mat-raised-button href="mailto:confusion@food.net"><i class="fa fa-envelope-o"></i> Email</a>
+       </div>
+       </div>
+   </div>
+ </div>
+
+ <div fxFlex fxFlexOffset="20px" class="form-size">
+    <h3>Send us your Feedback</h3>
+    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
+
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+              <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">First name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+              <mat-error *ngIf="feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched">Last name is required</mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" required>
+              <mat-error *ngIf="feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched">Tel. number is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="email" placeholder="Email" type="email" required>
+              <mat-error *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched">Email ID is required</mat-error>
+            </mat-form-field>
+          </p>
+      <table class="form-size">
+        <td>
+          <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
+        </td>
+        <td>
+          <mat-select placeholder="How?" formControlName="contacttype">
+            <mat-option *ngFor="let ctype of contactType" [value]="ctype">
+              {{ ctype }}
+            </mat-option>
+          </mat-select>
+        </td>
+        </table>
+      <p>
+        <mat-form-field class="full-width">
+          <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+        </mat-form-field>
+      </p>
+      <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+    </form>
+  </div>
+
+</div>

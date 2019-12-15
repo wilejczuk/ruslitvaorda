@@ -1,0 +1,147 @@
+<ngx-hm-carousel
+  [(ngModel)]="currentIndex"
+  [show-num]="4"
+  [autoplay-speed]="speed"
+  [infinite]="infinite"
+  [drag-many]="true"
+  [aniTime]="200"
+  [data]="avatars"
+  class="carousel c-accent  grey-back">
+
+  <section ngx-hm-carousel-container class="content">
+    <article class="item cursor-pointer"
+      ngx-hm-carousel-item
+      *ngFor="let avatar of avatars; let i = index"
+        [ngClass]="{'visible': currentIndex===i}">
+      <div class="img" [routerLink]="['/excerpt', 'v'+volumes[i]]"
+        [style.backgroundImage]="'url('+avatar.url+')'">
+        {{i}}
+      </div>
+    </article>
+    <ng-template #infiniteContainer></ng-template>
+  </section>
+
+  <!-- only using in infinite mode or autoplay mode, that will render with-->
+  <ng-template #carouselContent let-avatar let-i="index">
+    <article class="item cursor-pointer"
+      [ngClass]="{'visible': currentIndex===i}">
+      <div class="img" (click)="click(i)"
+        [style.backgroundImage]="'url('+avatar.url+')'">
+        {{i}}
+      </div>
+    </article>
+  </ng-template>
+
+  <ng-template #carouselPrev>
+    <div class="click-area">
+      <i class="material-icons">keyboard_arrow_left</i>
+    </div>
+  </ng-template>
+  <ng-template #carouselNext>
+    <div class="click-area">
+      <i class="material-icons">keyboard_arrow_right</i>
+    </div>
+  </ng-template>
+
+  <ng-template #carouselDot let-model>
+    <div class="ball bg-accent"
+      [class.visible]="model.index === model.currentIndex"></div>
+  </ng-template>
+
+  <ng-template #carouselProgress let-progress>
+    <div class="progress"></div>
+  </ng-template>
+
+</ngx-hm-carousel>
+
+
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+  <a name="participants"><h1>Участники проекта</h1></a>
+
+  <mat-list fxFlex fxLayout="row wrap" fxLayout.xs="column">
+    <mat-list-item *ngFor="let people of peoplz" [routerLink]="['/excerpt', people.id]">
+      <img matListAvatar src={{people.image}} alt={{people.name_ru}}>
+      <h1 matLine> {{people.name_ru}} </h1>
+      <p matLine *ngFor="let role of people.roles">
+        <span> {{roles[role]}} </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+
+  <!-- <mat-list fxFlex fxLayout="row wrap" fxLayout.xs="column">
+    <mat-list-item *ngFor="let century of centuries">
+      <h1 matLine> <a [routerLink]="['/excerpt', century]">{{century}}</a> </h1>
+    </mat-list-item>
+  </mat-list>
+
+  <mat-list fxFlex fxLayout="row wrap" fxLayout.xs="column">
+    <mat-list-item *ngFor="let volume of volumes">
+      <h1 matLine> <a [routerLink]="['/excerpt', 'v'+volume]">{{volume}}</a> </h1>
+    </mat-list-item>
+  </mat-list> -->
+
+</div>
+
+
+
+  <a name="vols"><h1>Выпуски</h1></a>
+
+
+      <ngx-hm-carousel
+            [(ngModel)]="currentIndex1"
+            [show-num]="1"
+            [autoplay-speed]="speed"
+            [autoplay]="true"
+            [infinite]="infinite"
+            [drag-many]="true"
+            [aniTime]="200"
+            [data]="centAvatars"
+            class="top-carousel c-accent">
+
+            <section ngx-hm-carousel-container class="content">
+              <article class="item cursor-pointer"
+                ngx-hm-carousel-item
+                *ngFor="let avatar of centAvatars; let i = index"
+                  [ngClass]="{'visible': currentIndex===i}">
+                <div class="img"
+                  style="font: bold 24px/45px Helvetica, Sans-Serif;"
+                  [routerLink]="['/excerpt', centuries[i]]"
+                  [style.backgroundImage]="'url('+avatar.url+')'">
+    {{centuries[i]}} век
+                </div>
+              </article>
+              <ng-template #infiniteContainer></ng-template>
+            </section>
+
+            <!-- only using in infinite mode or autoplay mode, that will render with-->
+            <ng-template #carouselContent let-avatar let-i="index">
+              <article class="item cursor-pointer"
+                [ngClass]="{'visible': currentIndex===i}">
+                <div class="img d-flex" (click)="click(i)"
+                  [style.backgroundImage]="'url('+avatar.url+')'">
+
+                </div>
+              </article>
+            </ng-template>
+
+            <ng-template #carouselPrev>
+              <div class="click-area">
+                <i class="material-icons">keyboard_arrow_left</i>
+              </div>
+            </ng-template>
+            <ng-template #carouselNext>
+              <div class="click-area">
+                <i class="material-icons">keyboard_arrow_right</i>
+              </div>
+            </ng-template>
+
+
+
+            <ng-template #carouselProgress let-progress>
+              <div class="progress"></div>
+            </ng-template>
+
+          </ngx-hm-carousel>

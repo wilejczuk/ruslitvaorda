@@ -1,0 +1,49 @@
+<div class="container"
+    fxLayout="row wrap"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap.xs="0">
+
+    <div fxFlex="100">
+      <div *ngIf="featuredMan">
+        <app-ppl-detailed [people] = "featuredMan"></app-ppl-detailed>
+      </div>
+
+      <div *ngIf="century">
+
+        <table width="100%">
+          <td width="70%" valign="top">
+            <div *ngFor="let article of articles">
+              <p *ngFor="let cent of article.centuries">
+                <span *ngIf="cent==century"><b>{{article.authors}}</b> {{article.name_ru}}</span>
+              </p>
+            </div>
+          </td>
+          <td width="30%" align="center">
+                <h3>{{century | uppercase}} век</h3>
+                <p><img class="ava" src="../../assets/images/log.png"></p>
+          </td>
+        </table>
+
+    </div>
+
+    <div *ngIf="volume">
+
+      <table width="100%">
+        <td width="70%" valign="top">
+          <p *ngFor="let article of articles">
+              <span *ngIf="article.volume==volume"><b>{{article.authors}}</b> {{article.name_ru}}</span>
+          </p>
+        </td>
+        <td width="30%" align="center">
+              <h3>{{volume}} выпуск</h3>
+              <p><img class="ava" src="../../assets/images/log.png"></p>
+        </td>
+      </table>
+
+
+    </div>
+
+
+</div>

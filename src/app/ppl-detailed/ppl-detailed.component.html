@@ -1,0 +1,23 @@
+<div fxFlex *ngIf=people>
+
+  <table width="100%">
+    <td width="70%" valign="top">
+
+      <div *ngFor="let article of articles">
+        <p *ngFor="let author of article.authors">
+          <span *ngIf="author==people.name_ru">{{article.name_ru}}</span>
+          <span *ngIf="author==people.name_ru&&article.authors.length>1"> (соавторы:
+            <span *ngFor="let coauthor of article.authors">
+              <span *ngIf="coauthor!=people.name_ru">{{coauthor}}</span></span>)
+          </span>
+        </p>
+      </div>
+
+    </td>
+    <td width="30%" align="center">
+          <h3>{{people.name_ru | uppercase}}</h3>
+          <p><img mat-card-image class="ava" src={{people.image}} alt={{people.name_ru}}></p>
+    </td>
+  </table>
+
+</div>
