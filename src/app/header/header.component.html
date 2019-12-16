@@ -1,7 +1,33 @@
-<mat-toolbar class="background-primary app-toolbar z-depth-5">
+<div>
+  <mat-toolbar class="background-primary app-toolbar z-depth-5">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
   <span><img src="/assets/images/log.png" height=50 width=50></span>&nbsp;
-  <a mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
-  <a mat-button href="home#participants"><span class="fa fa-info fa-lg"></span> Участники проекта</a>
-  <a mat-button href="home#vols"><span class="fa fa-list fa-lg"></span> Выпуски</a>
-  <a mat-button><span class="fa fa-address-card fa-lg"></span> Contact</a>
-</mat-toolbar>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
+      <a mat-button href="home#participants"><span class="fa fa-info fa-lg"></span> Участники проекта</a>
+      <a mat-button href="home#vols"><span class="fa fa-list fa-lg"></span> Выпуски</a>
+      <a mat-button><span class="fa fa-address-card fa-lg"></span> Contact</a>
+    </div>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill class="example-container">
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <a mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
+        <a mat-button href="home#participants"><span class="fa fa-info fa-lg"></span> Участники проекта</a>
+        <a mat-button href="home#vols"><span class="fa fa-list fa-lg"></span> Выпуски</a>
+        <a mat-button><span class="fa fa-address-card fa-lg"></span> Contact</a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+<router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

@@ -22,6 +22,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 
 import { FormsModule } from '@angular/forms';
@@ -68,7 +70,9 @@ import { PublicationService } from './services/publication.service';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSidenavModule,
     MatCheckboxModule,
+    MatIconModule,
     FormsModule,
     MatSelectModule,
     MatSlideToggleModule,

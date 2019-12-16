@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit {
   centuries = CENTURIES;
   volumes = VOLUMES;
 
+  isSmallMobileDevice: MediaQueryList;
+  show_num: number;
+
 /// carousel data
 
     currentIndex = 0;
@@ -49,10 +52,13 @@ export class HomeComponent implements OnInit {
     });
 
     click(i) {
-      console.log(`${i}`);
+      this.isSmallMobileDevice = window.matchMedia("(max-width: 599px)");
+      if (this.isSmallMobileDevice.matches) this.show_num = 1
+      else this.show_num = 4;
     }
 
  /// END OF carousel data
+
 
   onSelect(man: People) {
     this.featuredMan = man;
@@ -74,7 +80,11 @@ export class HomeComponent implements OnInit {
           return 1
         return 0 // Никакой сортировки
       });
-    console.log (this.peoplz);
+
+      this.isSmallMobileDevice = window.matchMedia("(max-width: 599px)");
+
+      if (this.isSmallMobileDevice.matches) this.show_num = 1
+      else this.show_num = 4;
 
   }
 

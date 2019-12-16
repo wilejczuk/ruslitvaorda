@@ -106,7 +106,7 @@ export const PEOPLE : People[] = [
          0,
          1
       ],
-      image:'/assets/images/Unnamed_scientist.jpg'
+      image:'/assets/images/Huletski.jpg'
    },
    {
       id:'13',
@@ -154,7 +154,7 @@ export const PEOPLE : People[] = [
       roles:[
          0
       ],
-      image:'/assets/images/Unnamed_scientist.jpg'
+      image:'/assets/images/Pavliukov.jpg'
    },
    {
       id:'19',
@@ -210,7 +210,7 @@ export const PEOPLE : People[] = [
       roles:[
          0, 2
       ],
-      image:'/assets/images/Unnamed_scientist.jpg'
+      image:'/assets/images/Gagarin.jpg'
    },
    {
       id:'26',
@@ -235,5 +235,126 @@ export const PEOPLE : People[] = [
          0
       ],
       image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'29',
+      name_ru:"Горбань П.И.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'30',
+      name_ru:"Морозов А.А.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'31',
+      name_ru:"Сарайкин А.С.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Saraykin.jpg'
+   },
+   {
+      id:'32',
+      name_ru:"Шатохин Г.Г.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Shatokhin.jpg'
+   },
+   {
+      id:'33',
+      name_ru:"Карач А.А.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'34',
+      name_ru:"Ларионов Ю.В.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'35',
+      name_ru:"Романов С.Ю.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Romanov.jpg'
+   },
+   {
+      id:'36',
+      name_ru:"Шталенков И.Н.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'37',
+      name_ru:"Амосов М.А.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'38',
+      name_ru:"Губа К.А.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'39',
+      name_ru:"Тишкин В.Е.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'40',
+      name_ru:"Орлов К.В.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'41',
+      name_ru:"Бугарчёв А.И.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'42',
+      name_ru:"Дергачёва Л.В.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
+   },
+   {
+      id:'43',
+      name_ru:"Савченко А.С.",
+      roles:[
+         0
+      ],
+      image:'/assets/images/Unnamed_scientist.jpg'
    }
+
 ];
