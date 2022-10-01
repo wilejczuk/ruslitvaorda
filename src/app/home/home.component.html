@@ -54,12 +54,14 @@
 
 </ngx-hm-carousel>
 
+  <!-- <a name="participants"><h1>Участники проекта</h1></a> -->
 
 <div class="container"
      fxLayout="column"
      fxLayoutGap="10px">
 
-  <a name="participants"><h1>Участники проекта</h1></a>
+
+  <!-- УБРАЛ 26 ЯНВАРЯ 2020 НА СТРАНИЦУ УЧАСТНИКОВ
 
   <mat-list fxFlex fxLayout="row wrap" fxLayout.xs="column">
     <mat-list-item *ngFor="let people of peoplz" [routerLink]="['/excerpt', people.id]">
@@ -67,9 +69,10 @@
       <h1 matLine> {{people.name_ru}} </h1>
       <p matLine *ngFor="let role of people.roles">
         <span> {{roles[role]}} </span>
+        <span *ngIf="role==0"> • {{this.publicationService.getArticleByAuthor(people.name_ru).length}} </span>
       </p>
     </mat-list-item>
-  </mat-list>
+  </mat-list> -->
 
   <!-- <mat-list fxFlex fxLayout="row wrap" fxLayout.xs="column">
     <mat-list-item *ngFor="let century of centuries">
@@ -83,65 +86,67 @@
     </mat-list-item>
   </mat-list> -->
 
+  <p style="text-indent:20px;"><b>«Русь, Литва, Орда в памятниках нумизматики и сфрагистики»</b>
+    - научный сборник, в котором публикуются материалы, посвященные денежному обращению,
+    торговле, финансам и геральдике средневековых государств Восточной Европы.
+    Предназначен для историков, нумизматов, сфрагистов, краеведов, коллекционеров,
+    любителей старины, а также всех заинтересованных лиц. Основан в 2015 году в Минске.
+
+  </p>
+
+  <div>
+    <div class='random_coin'><img [src]='randomCoin["obverse_thumbnail"]'>
+      <div>{{randomCoin["title"]}}</div>
+
+    </div>
+    <br>
+    <div class ='increased'>Готовятся к выходу</div>
+    <div class ='indented'>следующие выпуски сборника: <b>(12)</b> Регулярный выпуск</div>
+
+    <p>Авторы статей, редакторы и рецензенты получают бесплатный экземпляр сборника.</p>
+
+      <div class ='increased'>Требования к оформлению</div>
+      <div class ='indented'>для статей и сообщений</div>
+      <p>
+        <a href="../assets/pdf/rules.pdf" target="_blank">
+          <img src="../assets/images/books/pdf.png" height="100">
+        </a>
+      </p>
+      </div>
+
+  <!-- <mat-grid-list [cols]="breakpoint" rowHeight="300px" (window:resize)="onResize($event)">
+    <mat-grid-tile [colspan]="1">
+      <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title><b>В следующий том</b></mat-card-title>
+        <mat-card-subtitle>принимаем статьи до 29 февраля 2020 года</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <b>Тип выпуска</b>: регулярный том.<br>
+
+        <b>Авторам статей</b>: бесплатный авторский экземпляр.<br>
+
+        <b>Авторам сообщений</b>: 50%-ная скидка на том.
+
+      </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="cols_inside">
+      <mat-card class="example-card">
+      <mat-card-header style="color: #d6c8a3">
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title><b>Требования к оформлению</b></mat-card-title>
+        <mat-card-subtitle>для статей и сообщений</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+    <ol><li>Образец оформления литературы в списке: <i>Гулецкий Д.В., Петрунин К.М.</i>, 2013. Русские монеты 1353–1533. Минск.</li><li>Образец ссылки на литературу в тексте статьи: (<i>Гулецкий Д.В., Петрунин К.М.</i>, 2013. С. 86. № 411).</li><li>Изображения должны быть приложены к статье:<ul><li>на белом фоне, очищенные от теней;</li><li>в масштабе 2:1 (другой специально оговаривается);</li><li>с разрешением 300 dpi;</li><li>в отдельных файлах или скомпонованы в фототаблицы формата А4.</li></ul></li></ol>
+      </mat-card-content>
+    </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list> -->
+
+
+
 </div>
-
-
-
-  <a name="vols"><h1>Выпуски</h1></a>
-
-
-      <ngx-hm-carousel
-            [(ngModel)]="currentIndex1"
-            [show-num]="1"
-            [autoplay-speed]="speed"
-            [autoplay]="true"
-            [infinite]="infinite"
-            [drag-many]="true"
-            [aniTime]="200"
-            [data]="centAvatars"
-            class="top-carousel c-accent">
-
-            <section ngx-hm-carousel-container class="content">
-              <article class="item cursor-pointer"
-                ngx-hm-carousel-item
-                *ngFor="let avatar of centAvatars; let i = index"
-                  [ngClass]="{'visible': currentIndex===i}">
-                <div class="img"
-                  style="font: bold 24px/45px Helvetica, Sans-Serif;"
-                  [routerLink]="['/excerpt', centuries[i]]"
-                  [style.backgroundImage]="'url('+avatar.url+')'">
-    {{centuries[i]}} век
-                </div>
-              </article>
-              <ng-template #infiniteContainer></ng-template>
-            </section>
-
-            <!-- only using in infinite mode or autoplay mode, that will render with-->
-            <ng-template #carouselContent let-avatar let-i="index">
-              <article class="item cursor-pointer"
-                [ngClass]="{'visible': currentIndex===i}">
-                <div class="img d-flex" (click)="click(i)"
-                  [style.backgroundImage]="'url('+avatar.url+')'">
-
-                </div>
-              </article>
-            </ng-template>
-
-            <ng-template #carouselPrev>
-              <div class="click-area">
-                <i class="material-icons">keyboard_arrow_left</i>
-              </div>
-            </ng-template>
-            <ng-template #carouselNext>
-              <div class="click-area">
-                <i class="material-icons">keyboard_arrow_right</i>
-              </div>
-            </ng-template>
-
-
-
-            <ng-template #carouselProgress let-progress>
-              <div class="progress"></div>
-            </ng-template>
-
-          </ngx-hm-carousel>

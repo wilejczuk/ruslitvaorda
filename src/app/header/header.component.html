@@ -9,9 +9,8 @@
   <span><img src="/assets/images/log.png" height=50 width=50></span>&nbsp;
     <div fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
-      <a mat-button href="home#participants"><span class="fa fa-info fa-lg"></span> Участники проекта</a>
-      <a mat-button href="home#vols"><span class="fa fa-list fa-lg"></span> Выпуски</a>
-      <a mat-button><span class="fa fa-address-card fa-lg"></span> Contact</a>
+      <a mat-button routerLink="/participants"><span class="fa fa-info fa-lg"></span> Участники проекта</a>
+      <a mat-button routerLink="/menu"><span class="fa fa-list fa-lg"></span> Столетия</a>
     </div>
 
   </mat-toolbar>
@@ -20,9 +19,8 @@
     <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
         <a mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
-        <a mat-button href="home#participants"><span class="fa fa-info fa-lg"></span> Участники проекта</a>
-        <a mat-button href="home#vols"><span class="fa fa-list fa-lg"></span> Выпуски</a>
-        <a mat-button><span class="fa fa-address-card fa-lg"></span> Contact</a>
+        <a mat-button routerLink="/participants"><span class="fa fa-info fa-lg"></span> Участники проекта</a>
+        <a mat-button routerLink="/menu"><span class="fa fa-list fa-lg"></span> Столетия</a>
       </div>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>

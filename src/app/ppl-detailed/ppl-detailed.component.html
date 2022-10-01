@@ -3,7 +3,7 @@
   <table width="100%">
     <td width="70%" valign="top">
 
-      <div *ngFor="let article of articles">
+      <!-- <div *ngFor="let article of articles">
         <p *ngFor="let author of article.authors">
           <span *ngIf="author==people.name_ru">{{article.name_ru}}</span>
           <span *ngIf="author==people.name_ru&&article.authors.length>1"> (соавторы:
@@ -13,10 +13,45 @@
         </p>
       </div>
 
+<hr>
+      <div *ngFor="let article of articlesa">
+        {{article.name_ru}}
+      </div> -->
+
+
+      <table width="100%" class="table_col">
+        <colgroup>
+            <col style="background:#7d745e;">
+        </colgroup>
+        <tr>
+          <th width="60%"> Статья
+          </th>
+          <th width="30%"> Соавторы
+          </th>
+          <th width="10%"> Выпуск
+          </th>
+        </tr>
+        <tr *ngFor="let article of articlesa">
+          <td width="60%">        {{article.name_ru}}
+          </td>
+          <td width="30%">
+            <span *ngFor="let coauthor of article.authors">
+              <span *ngIf="coauthor!=people.name_ru">
+                <a [routerLink]="['/excerpt', this.peopleService.getManByName(coauthor).id]">{{coauthor}}</a><br>
+              </span>
+            </span>
+          </td>
+          <td width="10%">
+            <a [routerLink]="['/excerpt', 'v'+article.volume]">{{article.volume}}</a>
+          </td>
+        </tr>
+      </table>
+
+
     </td>
     <td width="30%" align="center">
-          <h3>{{people.name_ru | uppercase}}</h3>
           <p><img mat-card-image class="ava" src={{people.image}} alt={{people.name_ru}}></p>
+          <h3>{{people.name_ru}}</h3>
     </td>
   </table>
 

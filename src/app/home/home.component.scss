@@ -16,10 +16,35 @@ $transition_time:.2s;
     min-height: 150px;
 }
 
+.indented {
+  color: grey;
+  text-indent: 20px;
+}
+
+.increased {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.state {
+  font-size: 14px;
+  color: grey;
+}
+
+.numista {
+  font-size: 10px;
+}
+
+.random_coin {
+  float: right;
+  padding: 50px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 
 .top-carousel {
   color:white;
-  
+
   .century_legend {
     position	: absolute;
     top		: 100px;

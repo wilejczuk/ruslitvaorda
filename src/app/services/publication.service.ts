@@ -15,11 +15,19 @@ export class PublicationService {
 
 
   getArticle(id: string): Publication {
-  return PUBLICATION.filter((article) => (article.id === id))[0];
+    return PUBLICATION.filter((article) => (article.id === id))[0];
   }
 
-  //getFeaturedMan(): People {
-  //  return PEOPLE.filter((man) => man.featured)[0];
-  //}
+  getArticleByAuthor (author: string): Publication [] {
+    return PUBLICATION.filter((article) => (article.authors.includes(author)));
+  }
+
+  getArticleByVolume (volume: number): Publication [] {
+    return PUBLICATION.filter((article) => (article.volume === volume));
+  }
+
+  getArticleByCentury (ct: string): Publication [] {
+    return PUBLICATION.filter((article) => (article.centuries.includes(ct)));
+  }
 
 }

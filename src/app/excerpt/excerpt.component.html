@@ -1,3 +1,8 @@
+<!-- *****************
+Если выбрана фильтрация по авторам
+***************** -->
+
+
 <div class="container"
     fxLayout="row wrap"
     fxLayout.sm="column"
@@ -7,18 +12,157 @@
 
     <div fxFlex="100">
       <div *ngIf="featuredMan">
-        <app-ppl-detailed [people] = "featuredMan"></app-ppl-detailed>
+        <!-- <app-ppl-detailed [people] = "featuredMan"></app-ppl-detailed> -->
+        <table width="100%">
+          <td width="70%" valign="top">
+
+            <table width="100%" class="table_col_opposite">
+              <colgroup>
+                  <col style="background:#7d745e;">
+              </colgroup>
+              <tr>
+                <th width="60%"> Статья
+                </th>
+                <th width="25%"> Соавторы
+                </th>
+                <th width="15%"> Выпуск
+                </th>
+              </tr>
+              <tr *ngFor="let article of articlesa">
+                <td width="60%">        {{article.name_ru}}
+                </td>
+                <td width="25%">
+                  <span *ngFor="let coauthor of article.authors">
+                    <span *ngIf="coauthor!=featuredMan.name_ru">
+                      <a [routerLink]="['/excerpt', this.peopleservice.getManByName(coauthor).id]">{{coauthor}}</a><br>
+                    </span>
+                  </span>
+                </td>
+                <td width="15%">
+                  <a [routerLink]="['/excerpt', 'v'+article.volume]">{{article.volume}}</a>
+                </td>
+              </tr>
+            </table>
+
+            <div *ngIf="books.length>0">
+              <br>
+              <table width="100%" class="table_col_opposite">
+                <colgroup>
+                    <col style="background:#7d745e;">
+                </colgroup>
+                <tr>
+                  <th width="60%">Смотрите также книги этого автора
+                  </th>
+                  <th width="25%"> Соавторы
+                  </th>
+                  <th width="15%"> Издание
+                  </th>
+                </tr>
+                <tr *ngFor="let book of books">
+                  <td width="60%">
+                    <a [routerLink]="['/preview', book.id]">{{book.name_ru}}</a>
+                  </td>
+                  <td width="25%">
+                    <span *ngFor="let coauthor of book.authors">
+                      <span *ngIf="coauthor!=featuredMan.name_ru">
+                        <a [routerLink]="['/excerpt', this.peopleservice.getManByName(coauthor).id]">{{coauthor}}</a><br>
+                      </span>
+                    </span>
+                  </td>
+                  <td width="15%">
+                    {{book.published}}
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+
+          </td>
+          <td width="30%" align="center">
+                <p><img mat-card-image class="ava" src={{featuredMan.image}} alt={{featuredMan.name_ru}}></p>
+                <h3>{{featuredMan.name_ru}}</h3>
+                <h4 *ngIf="featuredMan.name_en">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Status_iucn_EN_icon_blank.svg" width=15 height=15> {{featuredMan.name_en}}</h4>
+                <p style="text-size: 60%">{{featuredMan.description}}</p>
+          </td>
+        </table>
       </div>
+
+      <!-- *****************
+      Если выбрана фильтрация по столетиям
+     ***************** -->
 
       <div *ngIf="century">
 
         <table width="100%">
           <td width="70%" valign="top">
-            <div *ngFor="let article of articles">
+            <!-- <div *ngFor="let article of articles">
               <p *ngFor="let cent of article.centuries">
                 <span *ngIf="cent==century"><b>{{article.authors}}</b> {{article.name_ru}}</span>
               </p>
+            </div> -->
+
+            <table width="100%" class="table_col">
+              <colgroup>
+                  <col>
+                  <col style="background:#7d745e;">
+              </colgroup>
+              <tr>
+                <th width="25%"> Авторы
+                </th>
+                <th width="60%"> Статья
+                </th>
+                <th width="15%"> Выпуск
+                </th>
+              </tr>
+              <tr *ngFor="let article of articles_ct">
+                <td width="25%">
+                  <span *ngFor="let author of article.authors">
+                    <a [routerLink]="['/excerpt', this.peopleservice.getManByName(author).id]">
+                      {{author}}
+                    </a>
+                    <br>
+                  </span>
+                </td>
+                <td width="60%">        {{article.name_ru}}
+                </td>
+                <td width="15%">
+                  <a [routerLink]="['/excerpt', 'v'+article.volume]">{{article.volume}}</a>
+                </td>
+              </tr>
+            </table>
+
+            <div *ngIf="books.length>0">
+              <br>
+              <table width="100%" class="table_col">
+                <colgroup>
+                    <col>
+                    <col style="background:#7d745e;">
+                </colgroup>
+
+                  <tr>
+                    <th width="25%"> Авторы
+                    </th>
+                    <th width="60%"> Смотрите также книги по {{century}} столетию
+                    </th>
+                    <th width="15%"> Издание
+                    </th>
+                  </tr>
+                <tr *ngFor="let book of books">
+                  <td width="25%">
+                    <span *ngFor="let coauthor of book.authors">
+                        <a [routerLink]="['/excerpt', this.peopleservice.getManByName(coauthor).id]">{{coauthor}}</a><br>
+                    </span>
+                  </td>
+                  <td width="60%">        {{book.name_ru}}
+                  </td>
+                  <td width="15%">
+                    {{book.published}}
+                  </td>
+                </tr>
+              </table>
             </div>
+
           </td>
           <td width="30%" align="center">
                 <h3>{{century | uppercase}} век</h3>
@@ -28,18 +172,111 @@
 
     </div>
 
+    <!-- *****************
+    Если выбрана фильтрация по томам
+    ***************** -->
+
     <div *ngIf="volume">
 
       <table width="100%">
         <td width="70%" valign="top">
-          <p *ngFor="let article of articles">
+          <!-- <p *ngFor="let article of articles">
               <span *ngIf="article.volume==volume"><b>{{article.authors}}</b> {{article.name_ru}}</span>
-          </p>
+          </p> -->
+
+          <!-- *****************
+          ЕСЛИ НУЖНА ПОДПИСЬ СВЕРХУ КАКОГО-ТО ТОМА
+          ***************** -->
+          <div *ngIf="volume==90">
+
+            <span mat-button class="fa fa-info fa-lg"></span> This special volume in the English language is going to be released in late 2020. Its preparation is in progress. <br>The full contents will be announced by September 2020.<br><br>
+
+          </div>
+
+          <!-- *****************
+          ЕСЛИ НУЖНА ПОДПИСЬ СВЕРХУ КАКОГО-ТО ТОМА - КОНЕЦ
+          ***************** -->
+
+          <table width="100%" class="table_col">
+            <colgroup>
+                <col>
+                <col style="background:#7d745e; color: #F5F6F6;">
+            </colgroup>
+            <tr>
+              <th width="30%">
+                 <div *ngIf="volume!=9">Авторы</div>
+                 <div *ngIf="volume==9">Authors</div>
+              </th>
+              <th width="70%">
+                <div *ngIf="volume!=9">Статья</div>
+                <div *ngIf="volume==9">Article</div>
+              </th>
+            </tr>
+            <tr *ngFor="let article of articles_vol">
+              <td width="30%">
+                <span *ngFor="let coauthor of article.authors">
+                  <a [routerLink]="['/excerpt', this.peopleservice.getManByName(coauthor).id]">
+                    {{coauthor}}
+                  </a>
+                  <br>
+                </span>
+              </td>
+
+              <td width="70%">        {{article.name_ru}}
+              </td>
+            </tr>
+          </table>
+
+
         </td>
         <td width="30%" align="center">
-              <h3>{{volume}} выпуск</h3>
+              <h3 *ngIf="volume!=9">{{volume}} выпуск</h3>
+              <h3 *ngIf="volume==9">Volume {{volume}}</h3>
+              <div *ngIf="books.length>0">
+                {{books[0].name_ru}}
+              </div>
               <p><img class="ava" src="../../assets/images/log.png"></p>
-        </td>
+              <div *ngIf="books.length>0">
+
+
+                {{books[0].published}}<br>
+                <mat-card-subtitle>{{books[0].description}}</mat-card-subtitle><br>
+              <!--   <img src="../../assets/images/volumes/9ex.jpg" width=200> -->
+              </div>
+
+              <div *ngIf="volume==1">
+                <br>
+                <a href="../assets/pdf/1.pdf" target="_blank">
+                  <img src="../assets/images/books/pdf.png" height="100">
+                </a>
+              </div>
+
+              <div *ngIf="volume==2">
+                <br>
+                <a href="../assets/pdf/2.pdf" target="_blank">
+                  <img src="../assets/images/books/pdf.png" height="100">
+                </a>
+              </div>
+
+              <div *ngIf="volume==3">
+                <br>
+                <a href="../assets/pdf/3.pdf" target="_blank">
+                  <img src="../assets/images/books/pdf.png" height="100">
+                </a>
+              </div>
+
+              <div *ngIf="volume==9">
+                <br>
+                 Спецвыпуск на английском языке, посвящённый XVI нумизматическому конгрессу в Варшаве (2022)
+                 <br><br><img src="../assets/images/inc2022.jpg" height="100">
+              </div>
+              <div *ngIf="volume==10">
+                <br>
+                 Спецвыпуск на национальных языках государств Восточной Европы, посвящённый XVI нумизматическому конгрессу в Варшаве (2022)
+                 <br><br><img src="../assets/images/inc2022.jpg" height="100">
+              </div>
+
+            </td>
       </table>
 
 

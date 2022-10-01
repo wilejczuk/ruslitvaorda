@@ -17,6 +17,10 @@ export class PeopleService {
     return PEOPLE.filter((man) => (man.id === id))[0];
   }
 
+  getManByName(name: string): People {
+    return PEOPLE.filter((man) => (man.name_ru === name))[0];
+  }
+
   getFeaturedMan(): People {
     return PEOPLE[0];
   }

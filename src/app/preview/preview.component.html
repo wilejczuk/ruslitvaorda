@@ -1,0 +1,52 @@
+
+
+<mat-grid-list cols="4" rowHeight="300px">
+  <mat-grid-tile [colspan]=1 [rowspan]=1>
+<img src={{coverPath}} height="250px">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]=3 [rowspan]=1>
+
+<div class="container text-inside-grid"
+     fxLayout="column"
+     fxLayoutGap="10px">
+  <mat-list fxFlex fxLayout="row wrap" fxLayout.xs="column">
+    <mat-list-item *ngFor="let people of featBook.authors" [routerLink]="['/excerpt', peopleservice.getManByName(people).id]">
+      <img matListAvatar src={{peopleservice.getManByName(people).image}} alt={{people}}>
+      <h1 matLine> {{people}} </h1>
+    </mat-list-item>
+  </mat-list>
+<hr>
+  <mat-list fxFlex fxLayout="column">
+    <mat-list-item>
+      <h2 matLine> <b>ISBN</b>: {{featBook.ISBN}} </h2>
+    </mat-list-item>
+    <mat-list-item>
+      <h2 matLine> <b>Страниц</b>: {{featBook.pages}} </h2>
+    </mat-list-item>
+    <mat-list-item>
+      <h2 matLine> {{featBook.published}} </h2>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+
+
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<mat-card>
+
+  <mat-card-title> {{featBook.name_ru}} </mat-card-title>
+  <mat-card-content> {{featBook.description}}  <br>
+
+<div *ngIf=showPreview align='center'>
+      <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+</div>
+<div *ngIf=!showPreview>
+
+    <br>  <a href={{featBook.pdf}} target="_blank"><img src="../assets/images/books/pdf.png" height="100"></a>
+</div>
+  </mat-card-content>
+
+</mat-card>

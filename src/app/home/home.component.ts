@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { People } from '../shared/people';
 import { PEOPLE } from '../shared/peoplz';
 import { PeopleService } from '../services/people.service';
+import { PublicationService } from '../services/publication.service';
+import { NumistaService } from '../services/numista.service';
 
 const ROLES : string[] =  ['Автор', 'Редактор', 'Рецензент', 'Дизайнер'];
 const CENTURIES : string[] =  ['IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII'];
-const VOLUMES: number[] = [1, 2, 3, 4, 5, 6, 7];
+const VOLUMES: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 @Component({
   selector: 'app-home',
@@ -17,12 +19,18 @@ export class HomeComponent implements OnInit {
   peoplz: People[];
   featuredMan: People;
 
+  articlesByMan : number;
+
   roles = ROLES;
   centuries = CENTURIES;
   volumes = VOLUMES;
 
   isSmallMobileDevice: MediaQueryList;
   show_num: number;
+  breakpoint: number;
+  cols_inside: number;
+
+  randomCoin = {};
 
 /// carousel data
 
@@ -33,7 +41,7 @@ export class HomeComponent implements OnInit {
     direction = 'right';
     directionToggle = true;
     autoplay = true;
-    avatars = '1234567'.split('').map((x, i) => {
+    avatars = '12345678901'.split('').map((x, i) => {
       const num = i;
       // const num = Math.floor(Math.random() * 1000);
       return {
@@ -42,7 +50,7 @@ export class HomeComponent implements OnInit {
       };
     });
 
-    centAvatars = '12345'.split('').map((x, i) => {
+    centAvatars = '123456789'.split('').map((x, i) => {
       const num = i;
       // const num = Math.floor(Math.random() * 1000);
       return {
@@ -51,25 +59,37 @@ export class HomeComponent implements OnInit {
       };
     });
 
-    click(i) {
-      this.isSmallMobileDevice = window.matchMedia("(max-width: 599px)");
-      if (this.isSmallMobileDevice.matches) this.show_num = 1
-      else this.show_num = 4;
-    }
 
  /// END OF carousel data
 
 
   onSelect(man: People) {
     this.featuredMan = man;
-    console.log(this);
-    //PeopleService.setFeaturedMen(man);
-    //console.log(HomeComponent.);
   }
 
-  constructor(private peopleService: PeopleService) { }
+
+  onResize(event) {
+      this.breakpoint = (event.target.innerWidth <= 599) ? 1 : 3;
+      this.cols_inside = (event.target.innerWidth <= 599) ? 1 : 2;
+      this.show_num = (event.target.innerWidth <= 599) ? 1 : 4;
+  }
+
+  constructor(
+    private peopleService: PeopleService,
+    private publicationService: PublicationService,
+    private numistaService: NumistaService
+  ) {}
 
   ngOnInit() {
+    const reqN = this.numistaService.getSrebreniques();
+
+    reqN.subscribe(
+      (response) => {
+        this.randomCoin = response.types[Math.floor(Math.random() * response.count)];
+        console.log(this.randomCoin);
+      },
+	    (error) => { console.log(error); });
+
     this.peoplz = this.peopleService.getPeople();
     this.peoplz = this.peoplz.sort(
       function(a, b){
@@ -86,6 +106,14 @@ export class HomeComponent implements OnInit {
       if (this.isSmallMobileDevice.matches) this.show_num = 1
       else this.show_num = 4;
 
+      this.breakpoint = (window.innerWidth <= 599) ? 1 : 3;
+      this.cols_inside = (window.innerWidth <= 599) ? 1 : 2;
+
+      //this.articlesByMan = this.publicationService.getArticleByAuthor("Гулецкий Д.В.").length;
+
   }
+
+
+
 
 }

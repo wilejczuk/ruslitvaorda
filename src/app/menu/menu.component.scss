@@ -9,23 +9,32 @@ $transition_time:.2s;
     padding: $pad-up-down $pad-left-right;
 }
 
-.jumbotron {
-    @include zero-margin(70px,30px);
-    background: $background-light ;
-    color:floralwhite;
-    min-height: 150px;
-}
 
-.carousel {
+.top-carousel {
   color:white;
+
+  .century_legend {
+    position	: absolute;
+    top		: 100px;
+    left		: 20px;
+
+  	color			: white;
+  	font			: bold 24px/45px Helvetica, Sans-Serif;
+  	letter-spacing		: -1px;
+  	background		: rgb(0, 0, 0); /* на случай, если следующая строка не сработает */
+  	background		: rgba(0, 0, 0, 0.7);
+  	padding			: 10px;
+  }
+
+
   .content {
     display: flex;
 
     .item {
       width: 100%;
-      padding: .5em;
+      padding: 0em;
       display: block;
-      opacity: 0.5;
+      opacity: 1;
 
       transition: opacity 0.295s linear $transition_time;
 
@@ -35,7 +44,7 @@ $transition_time:.2s;
 
       .img {
         width: 100%;
-        height: 400px;
+        height: 100vh;
         display: block;
         background-size: cover;
         background-position: center;
@@ -43,6 +52,15 @@ $transition_time:.2s;
     }
 
 
+  }
+
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background: #d6c8a3;
   }
 
   .ball {
@@ -66,17 +84,4 @@ $transition_time:.2s;
       font-size: 3em;
     }
   }
-}
-
-
-.full-width {
-    width: 95%
-}
-
-.half-width {
-    width: 45%
-}
-
-.form-size {
-    width: 75%
 }

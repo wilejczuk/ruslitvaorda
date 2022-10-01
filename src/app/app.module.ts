@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -40,10 +41,16 @@ import { ExcerptComponent } from './excerpt/excerpt.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
+import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 import { PeopleService } from './services/people.service';
 import { PublicationService } from './services/publication.service';
+import { BookService } from './services/book.service';
 
+import { ParticipantsComponent } from './participants/participants.component';
+import { PreviewComponent } from './preview/preview.component';
+
+import { NgxGalleryModule } from 'ngx-gallery';
 
 @NgModule({
   declarations: [
@@ -54,10 +61,12 @@ import { PublicationService } from './services/publication.service';
     FooterComponent,
     ExcerptComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ParticipantsComponent,
+    PreviewComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
@@ -78,12 +87,15 @@ import { PublicationService } from './services/publication.service';
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatSortModule,
-    NgxHmCarouselModule
+    NgxHmCarouselModule,
+    JwSocialButtonsModule,
+    NgxGalleryModule,
+    HttpClientModule
   ],
   entryComponents: [
         LoginComponent
   ],
-  providers: [PeopleService, PublicationService],
+  providers: [PeopleService, PublicationService, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
