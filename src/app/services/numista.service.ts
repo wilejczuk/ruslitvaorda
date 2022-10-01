@@ -11,8 +11,13 @@ export class NumistaService {
   constructor(private http: HttpClient) { }
 
   getSrebreniques() {
-    return this.http.get<string>('https://api.numista.com/api/v3/types?catalogue=2114',
-     { headers: "Numista-API-Key:pFI7CJd7epoQq6AayMN64dLbVZwzRObIQVaIfV" }
+    return this.http.get<string>('https://api.numista.com/api/v3/types?catalogue=553',
+     { headers: {"Numista-API-Key":"pFI7CJd7epoQq6AayMN64dLbVZwzRObIQVaIfV"} });
+  }
+
+  getParticular(item: number) {
+    return this.http.get<string>('https://api.numista.com/api/v3/types/'+item,
+     { headers: {"Numista-API-Key":"pFI7CJd7epoQq6AayMN64dLbVZwzRObIQVaIfV"} });
   }
 }
 
