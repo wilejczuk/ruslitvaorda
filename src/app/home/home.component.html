@@ -96,9 +96,9 @@
 
   <div>
     <div class='random_coin'><img [src]='randomCoin["obverse_thumbnail"]' width=200>
-      <div>{{randomCoin["title"]}}</div>
+      <div>Nogata{{yearsRange}}</div>
       <div class='state'>{{randomCoinIssuer}}</div>
-      <div class='state'><b>Huletski, Petrunin #{{randomCoinDet}}</b></div><br>
+      <div *ngIf="randomCoinDet!=0" class='state'><b>Sotnikova, Spasskij #{{randomCoinDet}}</b></div><br>
       <div class ='numista'>Ⓒ <a href="https://en.numista.com/">Numista</a></div>
     </div>
     <br>
