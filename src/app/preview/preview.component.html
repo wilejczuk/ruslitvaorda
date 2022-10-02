@@ -4,7 +4,7 @@
   <mat-grid-tile [colspan]=1 [rowspan]=1>
 <img src={{coverPath}} height="250px">
   </mat-grid-tile>
-  <mat-grid-tile [colspan]=3 [rowspan]=1>
+  <mat-grid-tile [colspan]=2 [rowspan]=1>
 
 <div class="container text-inside-grid"
      fxLayout="column"
@@ -29,14 +29,20 @@
   </mat-list>
 </div>
 
+  </mat-grid-tile>
 
-
+  <mat-grid-tile [colspan]=1 [rowspan]=1>
+    <div class='random_coin'><img [src]='randomCoin["obverse_thumbnail"]' width=200>
+      <div>{{randomCoin["title"]}}</div>
+      <div class='state'>{{randomCoinIssuer}}</div>
+      <div class='state'><b>Huletski, Petrunin #{{randomCoinDet}}</b></div><br>
+      <div class ='numista'>Ⓒ <a href="https://en.numista.com/">Numista</a></div>
+    </div>
   </mat-grid-tile>
 
 </mat-grid-list>
 
 <mat-card>
-
   <mat-card-title> {{featBook.name_ru}} </mat-card-title>
   <mat-card-content> {{featBook.description}}  <br>
 

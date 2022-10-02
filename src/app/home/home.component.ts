@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   randomCoin = {};
   randomCoinDet = 0;
   randomCoinIssuer = "";
+  yearsRange = "";
 
 /// carousel data
 
@@ -83,18 +84,19 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const reqN = this.numistaService.getSrebreniques();
+    const reqN = this.numistaService.getKievan();
     reqN.subscribe(
       (response) => {
-        console.log(response);
-        this.randomCoin = response["types"][Math.floor(Math.random() * 50)]; //Should be response.count, put there are 50 items per page
+        this.randomCoin = response["types"][Math.floor(Math.random() * response["count"])];
+        console.log(this.randomCoin);
         this.randomCoinIssuer = this.randomCoin["issuer"]["name"];
+        this.yearsRange = ", AD "+this.randomCoin["min_year"]+"-"+this.randomCoin["max_year"];
         const reqDetails = this.numistaService.getParticular(this.randomCoin["id"]);
         // запрашиваем больше деталей о конкретном экземпляре
         reqDetails.subscribe(
           (response) => {
-            this.randomCoinDet = response["references"][0]["number"];
-            console.log(this.randomCoinDet);
+            if (response["references"]) this.randomCoinDet = response["references"][0]["number"];
+            console.log(response);
           },
     	    (error) => { console.log(error); });
       },

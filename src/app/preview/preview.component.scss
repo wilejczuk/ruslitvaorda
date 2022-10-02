@@ -3,3 +3,30 @@
   left: 5px;
   top: 0px;
 }
+
+.indented {
+  color: grey;
+  text-indent: 20px;
+}
+
+.increased {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.state {
+  font-size: 14px;
+  color: grey;
+}
+
+.numista {
+  font-size: 10px;
+}
+
+.random_coin {
+  float: right;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}

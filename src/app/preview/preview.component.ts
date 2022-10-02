@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Params, ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
-
+import { NumistaService } from '../services/numista.service';
 
 import { Book } from '../shared/book';
 import { BookService } from '../services/book.service';
@@ -22,11 +22,35 @@ export class PreviewComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
+  randomCoin = {};
+  randomCoinDet = 0;
+  randomCoinIssuer = "";
+
   constructor(  private bookservice: BookService,
     private peopleservice: PeopleService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private numistaService: NumistaService
+) { }
 
   ngOnInit() {
+
+    const reqN = this.numistaService.getHP();
+    reqN.subscribe(
+      (response) => {
+        console.log(response);
+        this.randomCoin = response["types"][Math.floor(Math.random() * 50)]; //Should be response.count, put there are 50 items per page
+        this.randomCoinIssuer = this.randomCoin["issuer"]["name"];
+        const reqDetails = this.numistaService.getParticular(this.randomCoin["id"]);
+        // запрашиваем больше деталей о конкретном экземпляре
+        reqDetails.subscribe(
+          (response) => {
+            this.randomCoinDet = response["references"][0]["number"];
+            console.log(this.randomCoinDet);
+          },
+          (error) => { console.log(error); });
+      },
+      (error) => { console.log(error); });
+
     var id = this.route.snapshot.params['id'];
 
     this.featBook = this.bookservice.getBook(id);

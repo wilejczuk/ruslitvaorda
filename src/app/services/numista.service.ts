@@ -9,16 +9,20 @@ import { catchError, retry } from 'rxjs/operators';
 
 export class NumistaService {
   constructor(private http: HttpClient) { }
+  APIKey = "pFI7CJd7epoQq6AayMN64dLbVZwzRObIQVaIfV";
 
-  getSrebreniques() {
+  getHP() {
     return this.http.get<string>('https://api.numista.com/api/v3/types?catalogue=553',
-     { headers: {"Numista-API-Key":"pFI7CJd7epoQq6AayMN64dLbVZwzRObIQVaIfV"} });
+     { headers: {"Numista-API-Key":this.APIKey} });
+  }
+
+  getKievan() {
+    return this.http.get<string>('https://api.numista.com/api/v3/types?lang=en&q=Srebrennik',
+     { headers: {"Numista-API-Key":this.APIKey} });
   }
 
   getParticular(item: number) {
     return this.http.get<string>('https://api.numista.com/api/v3/types/'+item,
-     { headers: {"Numista-API-Key":"pFI7CJd7epoQq6AayMN64dLbVZwzRObIQVaIfV"} });
+     { headers: {"Numista-API-Key":this.APIKey} });
   }
 }
-
-// https://api.numista.com/api/v3/types?lang=en&q=Srebrennik
