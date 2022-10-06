@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   breakpoint: number;
   cols_inside: number;
 
-  randomCoin = {};
+  randomCoin;
   randomCoinDet = 0;
   randomCoinIssuer = "";
   yearsRange = "";
@@ -120,8 +120,6 @@ export class HomeComponent implements OnInit {
 
       this.breakpoint = (window.innerWidth <= 599) ? 1 : 3;
       this.cols_inside = (window.innerWidth <= 599) ? 1 : 2;
-
-      //this.articlesByMan = this.publicationService.getArticleByAuthor("Гулецкий Д.В.").length;
 
   }
 

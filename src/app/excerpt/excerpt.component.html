@@ -78,12 +78,12 @@
 
 
           </td>
-          <td width="30%" align="center">
+          <td width="30%" style="text-align: center;">
                 <p><img mat-card-image class="ava" src={{featuredMan.image}} alt={{featuredMan.name_ru}}></p>
                 <h3>{{featuredMan.name_ru}}</h3>
                 <h4 *ngIf="featuredMan.name_en">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Status_iucn_EN_icon_blank.svg" width=15 height=15> {{featuredMan.name_en}}</h4>
-                <p style="text-size: 60%">{{featuredMan.description}}</p>
+                <p>{{featuredMan.description}}</p>
           </td>
         </table>
       </div>
@@ -180,23 +180,6 @@
 
       <table width="100%">
         <td width="70%" valign="top">
-          <!-- <p *ngFor="let article of articles">
-              <span *ngIf="article.volume==volume"><b>{{article.authors}}</b> {{article.name_ru}}</span>
-          </p> -->
-
-          <!-- *****************
-          ЕСЛИ НУЖНА ПОДПИСЬ СВЕРХУ КАКОГО-ТО ТОМА
-          ***************** -->
-          <div *ngIf="volume==90">
-
-            <span mat-button class="fa fa-info fa-lg"></span> This special volume in the English language is going to be released in late 2020. Its preparation is in progress. <br>The full contents will be announced by September 2020.<br><br>
-
-          </div>
-
-          <!-- *****************
-          ЕСЛИ НУЖНА ПОДПИСЬ СВЕРХУ КАКОГО-ТО ТОМА - КОНЕЦ
-          ***************** -->
-
           <table width="100%" class="table_col">
             <colgroup>
                 <col>
