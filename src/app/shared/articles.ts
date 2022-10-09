@@ -1231,7 +1231,7 @@ export const PUBLICATION : Publication[] =  [
         },
         {
           id: "175",
-          name_ru: 'Finds of European leads seals of the late Jagiellonian time in Druck and Novaharodak regions of the former Grand Duchy of Lithuania',
+          name_ru: 'Finds of European lead seals of the late Jagiellonian time in Druck and Novaharodak regions of the former Grand Duchy of Lithuania',
           centuries: ['XV', 'XVI'],
           authors: ["Гулецкий Д.В.", "Ван Лаэре Р."],
           volume: 9
